@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ethiopian_medical_biz_datawarehouse"
+version = "0.0.1"
+description = "The Ethiopian Medical Business Data Warehouse \u0026 Analytics Platform is a comprehensive data solution designed to empower the Ethiopian healthcare and medical industry."
+authors = [
+  { name = "Daniel Andarge" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = "~=This project aims to build a robust and scalable data warehouse that consolidates data from various sources, including medical facilities, pharmaceutical companies, insurance providers,"
+
+[tool.black]
+line-length = 99
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+)/
+'''
+
+[tool.ruff.lint.isort]
+known_first_party = ["ethiopian_medical_biz_datawarehouse"]
+force_sort_within_sections = true
