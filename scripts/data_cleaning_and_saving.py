@@ -6,7 +6,6 @@ import psycopg2
 from psycopg2 import sql
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
 # Logging configuration
@@ -14,14 +13,11 @@ logging.basicConfig(filename='data_cleaning.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 # Load environment variables
-telegram_api_id = os.getenv('TELEGRAM_API_ID')
-telegram_api_hash = os.getenv('TELEGRAM_API_HASH')
-telegram_phone_number = os.getenv('TELEGRAM_PHONE_NUMBER')
 db_host = os.getenv('DB_HOST')
 db_name = os.getenv('DB_NAME')  
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
-csv_directory = os.getenv('CSV_DIRECTORY')
+
 
 def load_data(file_path):
     """Load data from a CSV file."""
@@ -56,15 +52,12 @@ def handle_missing_values(df):
         logging.error(f"Error handling missing values: {e}")
         raise
 
-
-
 def standardize_formats(df):
     """Standardize formats."""
-    df['content'] = df['content'].str.lower()
+    df['content'] = df['content'].str.lower().str.replace(r'[^\w\s]', '', regex=True)
     df['timestamp'] = pd.to_datetime(df['timestamp'], format='%Y-%m-%d %H:%M:%S%z')
     logging.info("Standardized formats.")
     return df
-
 
 
 
@@ -77,6 +70,7 @@ def store_cleaned_data(df, file_path):
         logging.error(f"Failed to store cleaned data to {file_path}: {e}")
         raise
 
+
 def save_to_database(df, table_name):
     """Save DataFrame to PostgreSQL database."""
     try:
@@ -87,13 +81,46 @@ def save_to_database(df, table_name):
             password=db_password
         )
         cursor = conn.cursor()
+
+        # Create the table if it doesn't exist
+        create_table_query = sql.SQL("""
+            CREATE TABLE IF NOT EXISTS {} (
+                id SERIAL PRIMARY KEY,
+                channel TEXT,
+                message_id INT,
+                content TEXT,
+                timestamp TIMESTAMP WITH TIME ZONE,
+                views FLOAT,
+                message_link TEXT
+            )
+        """).format(sql.Identifier(table_name))
+        cursor.execute(create_table_query)
+
         for index, row in df.iterrows():
-            insert_query = sql.SQL("""
-                INSERT INTO {} (channel, message_id, content, timestamp, views, message_link)
-                VALUES (%s, %s, %s, %s, %s, %s)
-                ON CONFLICT (message_id) DO NOTHING
+    
+            select_query = sql.SQL("""
+                SELECT 1 FROM {} WHERE message_id = %s
             """).format(sql.Identifier(table_name))
-            cursor.execute(insert_query, (row['channel'], row['message_id'], row['content'], row['timestamp'], row['views'], row['message_link']))
+            cursor.execute(select_query, (row['message_id'],))
+            if cursor.fetchone():
+                update_query = sql.SQL("""
+                    UPDATE {} SET
+                        channel = %s,
+                        content = %s,
+                        timestamp = %s,
+                        views = %s,
+                        message_link = %s
+                    WHERE message_id = %s
+                """).format(sql.Identifier(table_name))
+                cursor.execute(update_query, (row['channel'], row['content'], row['timestamp'], row['views'], row['message_link'], row['message_id']))
+            else:
+           
+                insert_query = sql.SQL("""
+                    INSERT INTO {} (channel, message_id, content, timestamp, views, message_link)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """).format(sql.Identifier(table_name))
+                cursor.execute(insert_query, (row['channel'], row['message_id'], row['content'], row['timestamp'], row['views'], row['message_link']))
+
         conn.commit()
         cursor.close()
         conn.close()
@@ -102,28 +129,40 @@ def save_to_database(df, table_name):
         logging.error(f'Database error: {e}')
     except Exception as e:
         logging.error(f'Error saving data to database: {e}')
-
+        
 def main():
     try:
-        # Define file paths
-        raw_data_path = os.path.join(csv_directory, 'Doctors Ethiopia.csv')
-        cleaned_data_path = os.path.join(csv_directory, 'cleaned_data_Doctors Ethiopia.csv')
-        
-        # Load raw data
-        df = load_data(raw_data_path)
-        
-        # Clean data
-        df = remove_duplicates(df)
-        df = handle_missing_values(df)
-        df = standardize_formats(df)
-        #df = validate_data(df)
-        
+        raw_csv_directory = os.getenv('CSV_DIRECTORY')
+        cleaned_CSV_directory = os.getenv('CLEANED_CSV_DIRECTORY')
+
+        # list to store the  DataFrames
+        standardized_dfs = []
+
+        # Iterate over raw_csv_directory
+        for filename in os.listdir(raw_csv_directory):
+            if filename.endswith('.csv'):
+                raw_data_path = os.path.join(raw_csv_directory, filename)
+                df = load_data(raw_data_path)
+                standardized_df = standardize_formats(df)
+                standardized_dfs.append(standardized_df)
+
+        # combine dataframes
+        combined_df = pd.concat(standardized_dfs, ignore_index=True)
+
+        # Clean and store the data
+        combined_df = remove_duplicates(combined_df)
+        combined_df = handle_missing_values(combined_df)
+
+
+        # Define the cleaned data path
+        cleaned_data_path = os.path.join(cleaned_CSV_directory, 'cleaned_data.csv')
+
         # Store cleaned data
-        store_cleaned_data(df, cleaned_data_path)
-        
+        store_cleaned_data(combined_df, cleaned_data_path)
+
         # Save cleaned data to database
-        save_to_database(df, 'telegram_messages')
-        
+        save_to_database(combined_df, 'telegram_messages')
+
         logging.info("Data cleaning and loading process completed successfully.")
     except Exception as e:
         logging.error(f"Data cleaning and loading process failed: {e}")

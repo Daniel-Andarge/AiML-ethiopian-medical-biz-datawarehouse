@@ -1,0 +1,12 @@
+dbt_med:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: admin
+      port: 5432
+      dbname: med_datawarehouse
+      schema: telegram_messages
+      threads: 1
