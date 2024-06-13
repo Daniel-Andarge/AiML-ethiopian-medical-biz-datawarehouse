@@ -1,4 +1,3 @@
--- tests/final_telegram_messages_test.sql
 
 {{ config(materialized='test') }}
 
