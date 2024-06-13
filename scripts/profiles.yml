@@ -3,10 +3,10 @@ dbt_med:
   outputs:
     dev:
       type: postgres
-      host: localhost
-      user: postgres
-      password: admin
+      host: your_host
+      user: your_username
+      password: your_password
       port: 5432
-      dbname: med_datawarehouse
-      schema: telegram_messages
-      threads: 1
+      dbname: your_dbname
+      schema: analysis
+      threads: 4
