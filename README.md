@@ -32,13 +32,6 @@ Collect images from specified Telegram channels for object detection:
 - [Chemed Telegram Channel](https://t.me/lobelia4cosmetics)
 - [Lobelia for Cosmetics](https://t.me/lobelia4cosmetics)
 
-### Steps
-
-1. Use Python packages like `telethon` for Telegram.
-2. Develop Telegram data extraction scripts or export content using the Telegram application.
-3. Store raw scraped data in a temporary storage location.
-4. Implement logging to track the scraping process, capture errors, and monitor progress.
-
 ## Task 2 - Data Cleaning and Transformation
 
 ### Data Cleaning
@@ -163,8 +156,8 @@ my_project/
 Clone the repository and install the required packages:
 
 ```sh
-git clone https://github.com/yourusername/ethiopian-medical-businesses-data-pipeline.git
-cd ethiopian-medical-businesses-data-pipeline
+git clone https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse.git
+cd AiML-ethiopian-medical-biz-datawarehouse
 pip install -r requirements.txt
 ```
 
