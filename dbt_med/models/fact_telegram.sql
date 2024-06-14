@@ -1,14 +1,12 @@
-
 {{ 
   config(
-    materialized='incremental',
+    materialized='table',
     schema='analysis',
     partition_by={
       "field": "timestamp",
       "data_type": "timestamp"
     },
-    unique_key='id',
-    incremental_strategy='merge'
+    unique_key='id'
   ) 
 }}
 
@@ -39,7 +37,7 @@ FROM source_data
 {% if is_incremental() %}
 
 -- Remove duplicates for incremental load
-AND id NOT IN (
+WHERE id NOT IN (
     SELECT id
     FROM {{ this }}
 )

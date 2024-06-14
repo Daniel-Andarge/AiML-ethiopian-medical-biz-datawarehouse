@@ -1,5 +1,7 @@
 
-{{ config(materialized='test') }}
+{{ config(
+    materialized='test'
+) }}
 
 WITH source_data AS (
   SELECT
@@ -11,7 +13,7 @@ WITH source_data AS (
     views,
     message_link,
     message_length
-  FROM {{ ref('final_telegram_messages') }}
+  FROM {{ ref('fact_telegram') }}
 ),
 
 validation_checks AS (
@@ -33,7 +35,7 @@ SELECT
   *
 FROM validation_checks
 WHERE
-  -- Check for emojis in content column
+  -- Check for emojis or unexpected characters in content column
   cleaned_content <> content
   -- Check for lowercase content
   OR lowercased_content <> content
