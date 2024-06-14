@@ -169,6 +169,10 @@ my_project/
 
 ![getyolo](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_yolo_result.png)
 
+## You can also use Postman api collection found in below link
+
+[Postman collection link](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/fastAPI/medicalAPI.postman_collection.json)
+
 ## Installation
 
 Clone the repository and install the required packages:
