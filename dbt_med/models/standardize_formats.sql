@@ -1,10 +1,11 @@
 
 SELECT
-    id,
-    channel,
-    message_id,
-    REGEXP_REPLACE(LOWER(content), '[^\w\s]', '') AS content,
-    TIMESTAMP WITH TIME ZONE 'timestamp' AS timestamp,
-    message_link,
-    views
-FROM {{ ref('handle_missing_values') }}
+  id,
+  COALESCE(channel, 'unknown') AS channel,
+  COALESCE(message_id, 0) AS message_id,
+  TRIM(LOWER(REGEXP_REPLACE(COALESCE(content, 'n/a'), '[^\w\s]', ''))) AS content,
+  COALESCE(CAST(timestamp AS TIMESTAMP), CURRENT_TIMESTAMP) AS timestamp,
+  COALESCE(message_link, 'n/a') AS message_link,
+  COALESCE(views, 0) AS views
+FROM
+  {{ ref('handle_missing_values') }}

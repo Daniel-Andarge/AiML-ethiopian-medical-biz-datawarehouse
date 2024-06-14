@@ -14,10 +14,11 @@ clean-targets:
   - 'dbt_packages'
 
 models:
-  dbt_med:
+  analysis:
     remove_duplicates:
       description: 'Removes duplicate rows based on message_id'
       materialized: view
+      schema: 'analysis'
       columns:
         - name: id
           description: 'Unique identifier for the message'
@@ -37,6 +38,7 @@ models:
     handle_missing_values:
       description: 'Handles missing values in the dataset'
       materialized: view
+      schema: 'analysis'
       columns:
         - name: id
           description: 'Unique identifier for the message'
@@ -56,6 +58,7 @@ models:
     standardize_formats:
       description: 'Standardizes formats in the dataset'
       materialized: view
+      schema: 'analysis'
       columns:
         - name: id
           description: 'Unique identifier for the message'
@@ -74,6 +77,7 @@ models:
 
     fact_telegram:
       description: 'Final transformed table with message length'
+      schema: 'analysis'
       columns:
         - name: id
           description: 'Unique identifier for the message'
@@ -91,9 +95,8 @@ models:
           description: 'The URL link to the message'
         - name: message_length
           description: 'The length of the message content'
-      materialized: incremental
+      materialized: table
       partition_by:
         field: timestamp
         data_type: timestamp
       unique_key: id
-      incremental_strategy: merge
