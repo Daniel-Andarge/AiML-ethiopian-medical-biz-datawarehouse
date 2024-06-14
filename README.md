@@ -4,14 +4,15 @@ The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehe
 
 ## Table of Contents
 
-1. [Data Scraping and Collection Pipeline](#task-1---data-scraping-and-collection-pipeline)
-2. [Data Cleaning and Transformation](#task-2---data-cleaning-and-transformation)
-3. [Object Detection Using YOLO](#task-3---object-detection-using-yolo)
-4. [Exposing the Collected Data Using FastAPI](#task-4---exposing-the-collected-data-using-fastapi)
-5. [Installation](#installation)
-6. [Usage](#usage)
-7. [Contributing](#contributing)
-8. [License](#license)
+1. [Data Scraping and Collection Pipeline](#data-scraping-and-collection-pipeline)
+2. [Data Cleaning and Transformation](#data-cleaning-and-transformation)
+3. [Object Detection Using YOLO](#object-detection-using-yolo)
+4. [Exposing the Collected Data Using FastAPI](#exposing-the-collected-data-using-fastapi)
+5. [Postman Collection](#you-can-also-use-Postman-api-collection-found-in-below-link)
+6. [Installation](#installation)
+7. [Usage](#usage)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ## Data Scraping and Collection Pipeline
 
