@@ -1,4 +1,3 @@
--- models/final_telegram.sql
 
 {{ 
   config(
@@ -23,7 +22,7 @@ WITH source_data AS (
     views,
     message_link,
     LENGTH(content) AS message_length
-  FROM {{ ref('telegram_messages') }}
+  FROM {{ ref('standardize_formats') }}
 )
 
 SELECT
@@ -36,3 +35,13 @@ SELECT
   message_link,
   message_length
 FROM source_data
+
+{% if is_incremental() %}
+
+-- Remove duplicates for incremental load
+AND id NOT IN (
+    SELECT id
+    FROM {{ this }}
+)
+
+{% endif %}
