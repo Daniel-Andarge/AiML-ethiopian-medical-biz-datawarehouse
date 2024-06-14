@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "ecf0b44c-109e-4bba-9967-0547667b1f5f",
+    "name": "fastAPI_postman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26691414"
+  },
+  "item": [
+    {
+      "name": "All Telegram Messages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/telegram_messages/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["telegram_messages", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "All Detection Results",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/detection_results/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["detection_results", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Telegram Message",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"channel\": \"string\",\r\n  \"message_id\": 0,\r\n  \"content\": \"string\",\r\n  \"timestamp\": \"2024-06-14T01:11:52.978Z\",\r\n  \"views\": 0,\r\n  \"message_link\": \"string\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/telegram_messages/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["telegram_messages", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Telegram Message",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/telegram_messages/{message_id}?message_id}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["telegram_messages", "{message_id}"],
+          "query": [
+            {
+              "key": "message_id}",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/telegram_messages/{message_id}?message_id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["", "telegram_messages", "{message_id}"],
+          "query": [
+            {
+              "key": "message_id",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
