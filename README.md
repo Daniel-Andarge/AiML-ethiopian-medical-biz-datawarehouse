@@ -4,26 +4,22 @@ The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehe
 
 ## Table of Contents
 
-1. [Task 1 - Data Scraping and Collection Pipeline](#task-1---data-scraping-and-collection-pipeline)
-2. [Task 2 - Data Cleaning and Transformation](#task-2---data-cleaning-and-transformation)
-3. [Task 3 - Object Detection Using YOLO](#task-3---object-detection-using-yolo)
-4. [Task 4 - Exposing the Collected Data Using FastAPI](#task-4---exposing-the-collected-data-using-fastapi)
+1. [Data Scraping and Collection Pipeline](#task-1---data-scraping-and-collection-pipeline)
+2. [Data Cleaning and Transformation](#task-2---data-cleaning-and-transformation)
+3. [Object Detection Using YOLO](#task-3---object-detection-using-yolo)
+4. [Exposing the Collected Data Using FastAPI](#task-4---exposing-the-collected-data-using-fastapi)
 5. [Installation](#installation)
 6. [Usage](#usage)
 7. [Contributing](#contributing)
 8. [License](#license)
 
-## Task 1 - Data Scraping and Collection Pipeline
+## Data Scraping and Collection Pipeline
 
 ### Telegram Scraping
 
 Utilize the Telegram API or custom scripts to extract data from public Telegram channels related to Ethiopian medical businesses. Key channels include:
 
-- [DoctorsET](https://t.me/DoctorsET)
-- [Chemed Telegram Channel](https://t.me/lobelia4cosmetics)
-- [Yetenaweg](https://t.me/yetenaweg)
-- [EAHCI](https://t.me/EAHCI)
-- More channels from [tgstat](https://et.tgstat.com/medicine)
+![scraped](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/scraped_data.png)
 
 ### Image Scraping
 
@@ -32,7 +28,14 @@ Collect images from specified Telegram channels for object detection:
 - [Chemed Telegram Channel](https://t.me/lobelia4cosmetics)
 - [Lobelia for Cosmetics](https://t.me/lobelia4cosmetics)
 
-## Task 2 - Data Cleaning and Transformation
+## DBT for Data Cleaning and Transformation
+
+1. **Setting Up DBT**:
+
+   ```sh
+   pip install dbt
+   dbt init dbt_med
+   ```
 
 ### Data Cleaning
 
@@ -41,18 +44,7 @@ Collect images from specified Telegram channels for object detection:
 - Standardize formats
 - Validate data
 
-### Storing Cleaned Data
-
-- Store cleaned data in a database
-
-### DBT for Data Transformation
-
-1. **Setting Up DBT**:
-
-   ```sh
-   pip install dbt
-   dbt init my_project
-   ```
+### Data Cleaning Models DBT Doc
 
 2. **Defining Models**:
 
@@ -62,19 +54,32 @@ Collect images from specified Telegram channels for object detection:
      dbt run
      ```
 
+![dbt](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt%20Docs_models.jpg)
+
+### Storing Cleaned Data
+
+- Store cleaned data in a database
+
+### DBT Database(Warehouse) Doc
+
+![dbt_db](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt%20Docs_database.jpg)
+
+### Fact table in Postgresql Database
+
+![dbt_db](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/fact_table.png)
+
 3. **Testing and Documentation**:
-   - Ensure data quality and provide context for transformations:
-     ```sh
-     dbt test
-     dbt docs generate
-     dbt docs serve
-     ```
+   ```sh
+   dbt test
+   dbt docs generate
+   dbt docs serve
+   ```
 
-### Monitoring and Logging
+### DBT - Directed Acyclic Graph (DAG)
 
-- Implement logging to track the transformation process, capture errors, and monitor progress.
+![dbt_dag](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt-dag.png)
 
-## Task 3 - Object Detection Using YOLO
+## Object Detection Using YOLO
 
 ### Setting Up the Environment
 
@@ -82,8 +87,8 @@ Ensure necessary dependencies are installed:
 
 ```sh
 pip install opencv-python
-pip install torch torchvision  # for PyTorch-based YOLO
-pip install tensorflow  # for TensorFlow-based YOLO
+pip install torch torchvision
+pip install tensorflow
 ```
 
 ### Downloading the YOLO Model
@@ -104,11 +109,11 @@ pip install -r requirements.txt
 - Extract data such as bounding box coordinates, confidence scores, and class labels.
 - Store detection data in a database table.
 
-### Monitoring and Logging
+### Detection data in Postgresql database
 
-- Implement logging to track the object detection process, capture errors, and monitor progress.
+![yolo](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/table_yolo_detection.png)
 
-## Task 4 - Exposing the Collected Data Using FastAPI
+## Exposing the Collected Data Using FastAPI
 
 ### Setting Up the Environment
 
@@ -151,6 +156,19 @@ my_project/
 
 - In `main.py`, define the API endpoints using FastAPI.
 
+### FastAPI Swagger Documentation
+
+![crud](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/fastapi_crud.png)
+
+### Get All Telegram data
+
+![get](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_telegram_data.png)
+![get](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_telegram_data2.png)
+
+### Get All Yolo detection results
+
+![getyolo](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_yolo_result.png)
+
 ## Installation
 
 Clone the repository and install the required packages:
@@ -166,7 +184,7 @@ pip install -r requirements.txt
 1. **Run Data Scraping Scripts**:
 
    ```sh
-   python scrape_telegram.py
+   python extract_load_pipeline.py
    ```
 
 2. **Run DBT Models**:
@@ -178,7 +196,7 @@ pip install -r requirements.txt
 3. **Run Object Detection**:
 
    ```sh
-   python detect_objects.py
+   python detect.py --source data/telegram_images --save-txt --save-conf --project results --name run1
    ```
 
 4. **Start FastAPI Application**:
