@@ -172,7 +172,7 @@ my_project/
 
 ## You can also use Postman api collection found in below link
 
-[Postman collection link]([https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/fastAPI/medicalAPI.postman_collection.json](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/fastAPI/postman_collection/medicalAPI.postman_collection.json))
+[Postman collection link](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/fastAPI/postman_collection/medicalAPI.postman_collection.json)
 
 ## Installation
 
