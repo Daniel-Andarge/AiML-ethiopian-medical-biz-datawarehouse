@@ -1,6 +1,6 @@
-# Ethiopian Medical Business Data Warehouse & Data Pipeline
-The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehensive data solution tailored to enhance the efficiency and efficacy of Ethiopia's healthcare and medical sectors. This initiative is dedicated to establishing a resilient and adaptable data warehouse that integrates information from diverse stakeholders such as medical institutions, pharmaceutical firms, insurance entities, and governmental bodies. The primary goal is to provide a unified platform for comprehensive data analysis, facilitating informed decision-making and strategic advancements in the healthcare landscape of Ethiopia.
+# Ethiopian Medical Business Data Warehouse & Pipeline
 
+The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehensive data solution tailored to enhance the efficiency and efficacy of Ethiopia's healthcare and medical sectors. This initiative is dedicated to establishing a resilient and adaptable data warehouse that integrates information from diverse stakeholders such as medical institutions, pharmaceutical firms, insurance entities, and governmental bodies. The primary goal is to provide a unified platform for comprehensive data analysis, facilitating informed decision-making and strategic advancements in the healthcare landscape of Ethiopia.
 
 ## Table of Contents
 
@@ -8,7 +8,7 @@ The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehe
 2. [Data Cleaning and Transformation](#data-cleaning-and-transformation)
 3. [Object Detection Using YOLO](#object-detection-using-yolo)
 4. [Exposing the Collected Data Using FastAPI](#exposing-the-collected-data-using-fastapi)
-5. [Postman Collection](#you-can-also-use-Postman-api-collection-found-in-below-link)
+5. [Postman Collection](#postman-collection)
 6. [Installation](#installation)
 7. [Usage](#usage)
 8. [Contributing](#contributing)
@@ -29,14 +29,9 @@ Collect images from specified Telegram channels for object detection:
 - [Chemed Telegram Channel](https://t.me/lobelia4cosmetics)
 - [Lobelia for Cosmetics](https://t.me/lobelia4cosmetics)
 
-## DBT for Data Cleaning and Transformation
+For more details, see the [data_scraping_and_cleaning.ipynb](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/tree/main/notebooks/data_scraping_and_cleaning.ipynb) notebook.
 
-1. **Setting Up DBT**:
-
-   ```sh
-   pip install dbt
-   dbt init dbt_med
-   ```
+## Data Cleaning and Transformation
 
 ### Data Cleaning
 
@@ -47,38 +42,27 @@ Collect images from specified Telegram channels for object detection:
 
 ### Data Cleaning Models DBT Doc
 
-2. **Defining Models**:
+Set up DBT for data transformation and create models (SQL files) for data transformation:
 
-   - Create DBT models (SQL files) for data transformation.
-   - Run DBT models to load data into the data warehouse:
-     ```sh
-     dbt run
-     ```
+```sh
+pip install dbt
+dbt init dbt_med
+dbt run
+```
 
 ![dbt](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt%20Docs_models.jpg)
 
 ### Storing Cleaned Data
 
-- Store cleaned data in a database
-
-### DBT Database(Warehouse) Doc
+Store cleaned data in a database.
 
 ![dbt_db](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt%20Docs_database.jpg)
 
-### Fact table in Postgresql Database
+### Fact Table in PostgreSQL Database
 
 ![dbt_db](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/fact_table.png)
 
-3. **Testing and Documentation**:
-   ```sh
-   dbt test
-   dbt docs generate
-   dbt docs serve
-   ```
-
-### DBT - Directed Acyclic Graph (DAG)
-
-![dbt_dag](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/dbt-dag.png)
+For more details, see the [data_scraping_and_cleaning.ipynb](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/tree/main/notebooks/data_scraping_and_cleaning.ipynb) notebook.
 
 ## Object Detection Using YOLO
 
@@ -110,9 +94,9 @@ pip install -r requirements.txt
 - Extract data such as bounding box coordinates, confidence scores, and class labels.
 - Store detection data in a database table.
 
-### Detection data in Postgresql database
-
 ![yolo](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/table_yolo_detection.png)
+
+For more details, see the [yolo.ipynb](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/tree/main/notebooks/yolo.ipynb) notebook.
 
 ## Exposing the Collected Data Using FastAPI
 
@@ -157,32 +141,51 @@ my_project/
 
 - In `main.py`, define the API endpoints using FastAPI.
 
-### FastAPI Swagger Documentation
-
 ![crud](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/fastapi_crud.png)
 
-### Get All Telegram data
+### Get All Telegram Data
 
 ![get](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_telegram_data.png)
 ![get](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_telegram_data2.png)
 
-### Get All Yolo detection results
+### Get All YOLO Detection Results
 
 ![getyolo](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/assets/get_all_yolo_result.png)
 
-## You can also use Postman api collection found in below link
+## Postman Collection
+
+You can use the Postman API collection found in the link below:
 
 [Postman collection link](https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse/blob/main/fastAPI/postman_collection/medicalAPI.postman_collection.json)
 
 ## Installation
 
-Clone the repository and install the required packages:
+To get started, follow these steps:
 
-```sh
-git clone https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse.git
-cd AiML-ethiopian-medical-biz-datawarehouse
-pip install -r requirements.txt
-```
+1. **Clone the repository**:
+
+   ```sh
+   git clone https://github.com/Daniel-Andarge/AiML-ethiopian-medical-biz-datawarehouse.git
+   cd AiML-ethiopian-medical-biz-datawarehouse
+   ```
+
+2. **Create a virtual environment and activate it**:
+
+   ```sh
+   # Using virtualenv
+   virtualenv venv
+   source venv/bin/activate
+
+   # Using conda
+   conda create -n your-env python=3.x
+   conda activate your-env
+   ```
+
+3. **Install the required dependencies**:
+
+   ```sh
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
@@ -205,14 +208,24 @@ pip install -r requirements.txt
    ```
 
 4. **Start FastAPI Application**:
+
    ```sh
    uvicorn main:app --reload
    ```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+Contributions are welcome. Please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Create a pull request to the main repository.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+Special thanks to the contributors and the open-source community for their support and resources.
