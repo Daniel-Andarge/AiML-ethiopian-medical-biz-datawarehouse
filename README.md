@@ -4,6 +4,17 @@ The Ethiopian Medical Business Data Warehouse & Analytics Platform aims to enhan
 #### Technologies Used:
 Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 Postman, CI/CD, Jupiter Notebook,Git , PDF & Google Drive (for project report).
 
+### Key Accomplishments
+
+**ETL Process:** Successfully managed the end-to-end ETL process, including data extraction, cleaning, transformation, and loading.
+  
+ **DBT for Data Modeling:** Implemented data modeling and transformation using SQL with DBT.
+
+**Image Extraction and Object Detection:** Extracted images from Telegram channels, performed object detection, and stored the results back into the data warehouse.
+
+**Database Management:** Loaded cleaned data into a PostgreSQL database.
+
+**API Development:** Exposed cleaned data for analysis through APIs using FastAPI, facilitating easy access from the database/data warehouse.
 
 ## Table of Contents
 
