@@ -1,6 +1,9 @@
-# Ethiopian Medical Business Data Warehouse & Pipeline
+# Ethiopian Medical Data Warehouse and Analytics Pipeline
+The Ethiopian Medical Business Data Warehouse & Analytics Platform aims to enhance the efficiency of Ethiopia's healthcare sector by creating a robust data warehouse. The project will extract data and images from public Telegram channels related to Ethiopian medical businesses, perform object detection on the images, and clean, transform, and store the extracted data in the warehouse. The main goal is to provide a unified solution for data analysis, supporting informed decision-making and driving strategic advancements in healthcare.
 
-The Ethiopian Medical Business Data Warehouse & Analytics Platform is a comprehensive data solution tailored to enhance the efficiency and efficacy of Ethiopia's healthcare and medical sectors. This initiative is dedicated to establishing a resilient and adaptable data warehouse that integrates information from diverse stakeholders such as medical institutions, pharmaceutical firms, insurance entities, and governmental bodies. The primary goal is to provide a unified platform for comprehensive data analysis, facilitating informed decision-making and strategic advancements in the healthcare landscape of Ethiopia.
+#### Technologies Used:
+Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 Postman, CI/CD, Jupiter Notebook,Git , PDF & Google Drive (for project report).
+
 
 ## Table of Contents
 
