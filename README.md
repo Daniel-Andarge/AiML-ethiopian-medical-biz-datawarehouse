@@ -6,15 +6,17 @@ Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 P
 
 ### Key Accomplishments
 
-**ETL Process:** Successfully managed the end-to-end ETL process, including data extraction, cleaning, transformation, and loading.
+- **ETL Process:** Successfully managed the end-to-end ETL process, including data extraction, cleaning, transformation, and loading.
   
- -**DBT for Data Modeling:** Implemented data modeling and transformation using SQL with DBT.
+ - **DBT for Data Modeling:** Implemented data modeling and transformation using SQL with DBT.
 
--**Image Extraction and Object Detection:** Extracted images from Telegram channels, performed object detection, and stored the results back into the data warehouse.
+- **Image Extraction and Object Detection:** Extracted images from Telegram channels, performed object detection, and stored the results back into the data warehouse.
 
--**Database Management:** Loaded cleaned data into a PostgreSQL database.
+- **Database Management:** Loaded cleaned data into a PostgreSQL database.
 
--**API Development:** Exposed cleaned data for analysis through APIs using FastAPI, facilitating easy access from the database/data warehouse.
+- **API Development:** Exposed cleaned data for analysis through APIs using FastAPI, facilitating easy access from the database/data warehouse.
+  
+- **Project Documentation:** Prepared comprehensive documentation for each step of the project to ensure clarity and understanding for the client.
 
 ## Table of Contents
 
