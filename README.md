@@ -19,6 +19,7 @@ Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 P
 - **Project Documentation:** Prepared comprehensive documentation for each step of the project, including a detailed report available [here](https://drive.google.com/file/d/1PMx1-IP_D8Dnvnsb6n_h46Ag6GzTRox5/view) to ensure clarity and understanding for the client.
 
 ## Table of Contents
+## Table of Contents
 
 1. [Data Scraping and Collection Pipeline](#data-scraping-and-collection-pipeline)
 2. [Data Cleaning and Transformation](#data-cleaning-and-transformation)
@@ -27,8 +28,9 @@ Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 P
 5. [Postman Collection](#postman-collection)
 6. [Installation](#installation)
 7. [Usage](#usage)
-8. [Contributing](#contributing)
-9. [License](#license)
+8. [Project Report](#project-report)  <!-- Add this line -->
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ## Data Scraping and Collection Pipeline
 
@@ -228,6 +230,10 @@ To get started, follow these steps:
    ```sh
    uvicorn main:app --reload
    ```
+
+## Project Report
+
+For a comprehensive overview of the project, please refer to the project report: [Project Report PDF](https://drive.google.com/file/d/1PMx1-IP_D8Dnvnsb6n_h46Ag6GzTRox5/view).
 
 ## Contributing
 
