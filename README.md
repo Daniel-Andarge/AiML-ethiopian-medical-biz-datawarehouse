@@ -28,7 +28,7 @@ Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 P
 5. [Postman Collection](#postman-collection)
 6. [Installation](#installation)
 7. [Usage](#usage)
-8. [Project Report](#project-report)  <!-- Add this line -->
+8. [Project Report](#project-report)  
 9. [Contributing](#contributing)
 10. [License](#license)
 
