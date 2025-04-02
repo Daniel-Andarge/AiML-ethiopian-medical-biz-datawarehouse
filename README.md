@@ -16,7 +16,7 @@ Python, DBT, SQL, ETL, PostgreSQL, FastAPI, Pandas, Pytest, SQLAlchemy, YOLOv5 P
 
 - **API Development:** Exposed cleaned data for analysis through APIs using FastAPI, facilitating easy access from the database/data warehouse.
   
-- **Project Documentation:** Prepared comprehensive documentation for each step of the project to ensure clarity and understanding for the client.
+- **Project Documentation:** Prepared comprehensive documentation for each step of the project, including a detailed report available [here](https://drive.google.com/file/d/1PMx1-IP_D8Dnvnsb6n_h46Ag6GzTRox5/view) to ensure clarity and understanding for the client.
 
 ## Table of Contents
 
